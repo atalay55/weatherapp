@@ -9,8 +9,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var latCont=TextEditingController();
-  var lonCont=TextEditingController();
+  var cityCont =TextEditingController();
+
 
 
 
@@ -29,9 +29,9 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding:  EdgeInsets.only(left: 20,right: 20,bottom: 25),
               child: TextFormField(
-                controller: latCont,
+                controller: cityCont,
                 decoration: InputDecoration(
-                    labelText: "latitude",
+                    labelText: "City",
                   errorBorder: OutlineInputBorder(
                       borderSide:
                       BorderSide(width: 2, color: Colors.red),
@@ -51,36 +51,10 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Padding(
-              padding:  EdgeInsets.only(left: 20,right: 20),
-              child: TextFormField(
-                controller: lonCont,
-                decoration: InputDecoration(
-                  labelText: "longitude",
-                  errorBorder: OutlineInputBorder(
-                      borderSide:
-                      BorderSide(width: 2, color: Colors.red),
-                      borderRadius: BorderRadius.circular(8.0)),
-                  focusedErrorBorder: OutlineInputBorder(
-                      borderSide:
-                      BorderSide(width: 2, color: Colors.red),
-                      borderRadius: BorderRadius.circular(8.0)),
-                  enabledBorder: OutlineInputBorder(
-                      borderSide:
-                      BorderSide(width: 2, color: Colors.black87),
-                      borderRadius: BorderRadius.circular(8.0)),
-                  focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          width: 2, color: Colors.blueGrey),
-                      borderRadius: BorderRadius.circular(8.0)),
-
-                ),
-              ),
-            ),
-            Padding(
               padding:EdgeInsets.only(top: 25.0),
               child:ElevatedButton(onPressed: (){
                 setState(() {
-                  Navigator.push(context, MaterialPageRoute(builder:(context)=>WeatherPage(lon: lonCont.text, lat: latCont.text)));
+                  Navigator.push(context, MaterialPageRoute(builder:(context)=>WeatherPage(city: cityCont.text)));
                 });
 
               }, child: Text("Get Weather")),

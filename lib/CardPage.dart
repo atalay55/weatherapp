@@ -46,7 +46,11 @@ class CardPage extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text("Temperature :  ${convertTemp(showData.temp)} °C",style:TextStyle(fontSize: 20,color: Colors.black)),
+          child: Text("Temperature :  ${showData.temp} °C",style:TextStyle(fontSize: 20,color: Colors.black)),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text("Wind speed :  ${showData.windSpeed} ",style:TextStyle(fontSize: 20,color: Colors.black)),
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
@@ -59,6 +63,3 @@ class CardPage extends StatelessWidget {
 }
 
 
-String convertTemp(double temp){
-  return (temp-273.15).round().toString();
-}

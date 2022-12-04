@@ -5,10 +5,10 @@ import 'package:weatherapp/Entity/ShowData.dart';
 
 class WeatherPage extends StatefulWidget {
 
-  late String lon;
-  late String lat;
+  late String city;
 
-  WeatherPage({required this.lon,required this.lat});
+
+  WeatherPage({required this.city});
 
   @override
   State<WeatherPage> createState() => _WeatherPageState();
@@ -17,7 +17,7 @@ class WeatherPage extends StatefulWidget {
 class _WeatherPageState extends State<WeatherPage> {
   @override
   void initState() {
-    WeatherDb(lat:widget.lat,lon: widget.lon );
+    WeatherDb(city:widget.city );
   }
 
   late String image;
@@ -29,7 +29,7 @@ class _WeatherPageState extends State<WeatherPage> {
       appBar:AppBar(title: Text("")) ,
       body:Center(
         child: FutureBuilder(
-          future: WeatherDb(lat:widget.lat,lon: widget.lon ).getShowData(),
+          future: WeatherDb(city:widget.city).getShowData(),
           builder: (context,snapshot){
             if(snapshot.hasData){
 
