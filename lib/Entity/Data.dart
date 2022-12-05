@@ -7,19 +7,19 @@ import 'package:weatherapp/Entity/Weather.dart';
 import 'package:weatherapp/Entity/Wind.dart';
 
 class Data{
-  late Coord coord;
-  late List<Weather> weather;
-  late String base;
-  late DataMain datamain;
-  late int visibility;
-  late Clouds clouds;
-  late Wind wind;
-  late int dt;
-  late Sys sys;
-  late int timeZone;
-  late int id;
-  late String name;
-  late int cod;
+  late Coord? coord;
+  late List<Weather>? weather;
+  late String? base;
+  late DataMain? datamain;
+  late int? visibility;
+  late Clouds? clouds;
+  late Wind? wind;
+  late int? dt;
+  late Sys? sys;
+  late int? timeZone;
+  late int? id;
+  late String? name;
+  late int? cod;
 
   Data({required this.coord,required this.weather,required this.base,required this.wind,required this.datamain,required this.visibility,required this.clouds,required this.dt,required this.sys,required this.timeZone,required this.id,
     required this.name,required this.cod,});
@@ -28,7 +28,6 @@ class Data{
 
     var jsonArray=json["weather"] as List;
     List<Weather> weather=jsonArray.map((e) => Weather.jsonFrom(e)).toList();
-    print(Sys.jsonFrom(json["sys"]));
     return Data(
         coord:Coord.jsonFrom(json["coord"]) ,
         weather:weather,

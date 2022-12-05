@@ -1,20 +1,20 @@
 class DataMain{
 
-  late double temp;
-  late double feels_like;
-  late double temp_min;
-  late double temp_max;
-  late int pressure;
-  late int humidity;
+  late double? temp;
+  late double? feels_like;
+  late double? temp_min;
+  late double? temp_max;
+  late int? pressure;
+  late int? humidity;
 
 
-  DataMain( this.temp, this.feels_like, this.temp_min, this.temp_max,
-     this.pressure, this.humidity);
+  DataMain({ required this.temp, required this.feels_like,required this.temp_min, required this.temp_max,
+     required this.pressure, required this.humidity});
 
 
   factory DataMain.jsonFrom(Map<String,dynamic> json){
-    return DataMain( json["temp"] as double, json["feels_like"] as double,  json["temp_min"] as double,
-         json["temp_max"] as double,  json["pressure"] as int,  json["humidity"] as int,);
+    return DataMain( temp: json["temp"] as double, feels_like: json["feels_like"] as double, temp_min:  json["temp_min"] as double,
+         temp_max: json["temp_max"] as double,pressure:   json["pressure"] as int, humidity:  json["humidity"] as int);
   }
 
 

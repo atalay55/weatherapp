@@ -44,10 +44,12 @@ class _WeatherPageState extends State<WeatherPage> {
                 break;
                 case "Snow": {image="Image/snow.png";}
                 break;
+                case "Mist": {image="Image/sisli.png";}
+                break;
               }
-              print(image);
 
-              return CardPage(showData: data,img: image);
+
+              return CardPage(showData: data, img: image );
             }
             return CircularProgressIndicator(
               valueColor: AlwaysStoppedAnimation<Color>(Colors.deepPurple),

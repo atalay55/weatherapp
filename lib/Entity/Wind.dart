@@ -1,11 +1,10 @@
 class Wind{
-  late double speed;
-  late int deg;
-  late double gust;
+  late double? speed;
 
-  Wind({required this.speed, required this.deg,required this.gust});
+
+  Wind({required this.speed});
 
   factory Wind.jsonFrom(Map<String,dynamic> json){
-    return Wind(speed: json["speed"] as double , deg: json["deg"] as int , gust: json["gust"] as double );
+    return Wind(speed: json["speed"] as double  );
   }
 }

@@ -1,8 +1,8 @@
 class Sys{
 
-  late String country;
-  late int sunrise;
-  late int sunset;
+  late String? country;
+  late int? sunrise;
+  late int? sunset;
 
   Sys({required this.country,required this.sunrise,required this.sunset});
 

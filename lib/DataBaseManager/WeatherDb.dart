@@ -16,16 +16,16 @@ class WeatherDb{
   //late var api= "https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=5182932598184f565bfefefc050d3829";
 
   Future<List<Weather>> parseData(String response)async{
-    return Data.jsonFrom(json.decode(response)).weather;
+    return Data.jsonFrom(json.decode(response)).weather!;
   }
   Future<DataMain> parseDataMain(String response)async{
-    return Data.jsonFrom(json.decode(response)).datamain;
+    return Data.jsonFrom(json.decode(response)).datamain!;
   }
    Future<String> parseName(String response)async{
-     return Data.jsonFrom(json.decode(response)).name;
+     return Data.jsonFrom(json.decode(response)).name!;
   }
  Future<Wind> parseWind(String response)async{
-   return Data.jsonFrom(json.decode(response)).wind;
+   return Data.jsonFrom(json.decode(response)).wind!;
  }
   Future<List<Weather>> getWeather()async{
     var url=Uri.parse(api);
@@ -47,9 +47,6 @@ class WeatherDb{
 
     var url=Uri.parse(api);
     var response=await http.get(url);
-    print(response);
-
-
     return parseName(response.body);
   }
 
@@ -61,7 +58,7 @@ class WeatherDb{
     var wind = await getWind();
 
 
-    return ShowData(cityName: citName, weatherMain: weatherMain.first.main, weatherMainDescription: weatherMain.first.description, temp: temp.temp, pressure: temp.pressure,windSpeed:wind.speed );
+    return ShowData(cityName: citName, weatherMain: weatherMain.first.main, weatherMainDescription: weatherMain.first.description, temp: temp.temp, pressure: temp.pressure,windSpeed:wind.speed! );
   }
 
 
