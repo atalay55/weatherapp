@@ -55,10 +55,10 @@ class WeatherDb{
     var citName= await getCityName();
     var weatherMain =await getWeather();
     var temp = await getDataMain();
-    var wind = await getWind();
 
 
-    return ShowData(cityName: citName, weatherMain: weatherMain.first.main, weatherMainDescription: weatherMain.first.description, temp: temp.temp, pressure: temp.pressure,windSpeed:wind.speed! );
+
+    return ShowData(cityName: citName, weatherMain: weatherMain.first.main, weatherMainDescription: weatherMain.first.description, temp: temp.temp, pressure: temp.pressure );
   }
 
 

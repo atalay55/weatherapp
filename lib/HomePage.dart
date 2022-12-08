@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:weatherapp/Weather%20Page.dart';
 
 class HomePage extends StatefulWidget {
@@ -10,22 +11,28 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   var cityCont =TextEditingController();
-
+  late var pageWidth;
 
 
 
   @override
   Widget build(BuildContext context) {
+    pageWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Weather"),
-      ),
+      appBar: AppBar(title: Text("Weather",style: TextStyle(fontSize: 21))
+          ,backgroundColor: Colors.deepPurple) ,
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-
+            Padding(
+              padding:  EdgeInsets.only(bottom: pageWidth/10),
+              child: SizedBox(
+                  width: pageWidth/3,
+                  height: pageWidth/3,
+                  child: Image.asset("Image/mainImage.jpg")),
+            ),
             Padding(
               padding:  EdgeInsets.only(left: 20,right: 20,bottom: 25),
               child: TextFormField(
@@ -52,7 +59,17 @@ class _HomePageState extends State<HomePage> {
             ),
             Padding(
               padding:EdgeInsets.only(top: 25.0),
-              child:ElevatedButton(onPressed: (){
+              child:ElevatedButton(
+                  style:ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.deepPurple),
+                    foregroundColor: MaterialStateProperty.all(Colors.white),
+                    overlayColor: MaterialStateProperty.all(Colors.red),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        )),
+                  ),
+                  onPressed: (){
                 setState(() {
                   Navigator.push(context, MaterialPageRoute(builder:(context)=>WeatherPage(city: cityCont.text)));
                 });
@@ -65,3 +82,4 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+

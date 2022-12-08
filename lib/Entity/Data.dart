@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:weatherapp/Entity/Clouds.dart';
 import 'package:weatherapp/Entity/Coord.dart';
 import 'package:weatherapp/Entity/DataMain.dart';

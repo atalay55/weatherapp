@@ -1,5 +1,5 @@
 class Clouds{
-  late int all;
+  late int? all;
   Clouds({required this.all});
 
   factory Clouds.jsonFrom(Map<String,dynamic> json){

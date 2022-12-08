@@ -1,5 +1,7 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:weatherapp/Entity/ShowData.dart';
 
 class CardPage extends StatelessWidget {
@@ -11,60 +13,59 @@ class CardPage extends StatelessWidget {
   CardPage({required this.showData,required this.img});
   @override
   Widget build(BuildContext context) {
+
     pageWidth = MediaQuery.of(context).size.width;
     backImage=getBackImage(showData.weatherMain);
-    return Container(
-      width: pageWidth,
-      decoration: BoxDecoration(
-        image:DecorationImage(image: AssetImage(backImage),fit: BoxFit.cover,opacity: .8)
-      ),
-      child: Column(
-        children: [
-          Padding(
-            padding:  EdgeInsets.only(top:pageWidth/5),
-            child: SizedBox(
-              width: pageWidth/2,
-              height: pageWidth/2,
-              child: Card(
-                color: Colors.grey,
-                child: Column(
-                  children: [
-                    SizedBox(
-                        height: pageWidth/2.2,
-                        width: pageWidth/2.2,
-                        child: CircleAvatar(child: Image.asset(img),backgroundColor: Colors.grey,)),
-                  ],
-                ), shape: RoundedRectangleBorder(side: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),)
-              ),
+    return SingleChildScrollView(
+      child: Container(
+        height: pageWidth*2,
+        width: pageWidth,
+        decoration: BoxDecoration(
+          image:DecorationImage(image: AssetImage(backImage),fit: BoxFit.cover,opacity: .8)
+        ),
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(top: pageWidth/14),
+              child: Text("${showData.cityName}",style: TextStyle(fontSize: 35,color: Colors.black) ,),
             ),
-          ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(showData.cityName!,style: TextStyle(fontSize: 25,fontStyle: FontStyle.italic),),
+            padding: EdgeInsets.only(),
+            child: SizedBox(
+                height: pageWidth/2.1,
+                width: pageWidth/2.1,
+                child:  Image.asset(img)),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text("Weather : ${showData.weatherMain}",style:TextStyle(fontSize: 25,color: Colors.black)),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text("Description :  ${showData.weatherMainDescription}",style:TextStyle(fontSize: 20,color: Colors.black)),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text("Temperature :  ${showData.temp} °C",style:TextStyle(fontSize: 20,color: Colors.black)),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text("Wind speed :  ${showData.windSpeed}",style:TextStyle(fontSize: 20,color: Colors.black)),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text("Pressure :  ${showData.pressure}  Pa",style:TextStyle(fontSize: 20,color: Colors.black)),
-          ),
+            Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: Text( "${showData.temp} °C " ,style:TextStyle(fontSize: 25,color: Colors.black)),
+            ),
 
-        ],
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text( "${showData.weatherMain} " ,style:TextStyle(fontSize: 25,color: Colors.black)),
+            ),
+            SfCartesianChart(
+                primaryXAxis: CategoryAxis( ),
+                primaryYAxis: NumericAxis(),
+                enableAxisAnimation:true,
+                series: <ChartSeries>[
+                  LineSeries<ChartData, String>(
+                      dataSource: [
+                        ChartData("Mon",17.5),
+                        ChartData('Tue', 15.8),
+                        ChartData('Wen',12),
+                        ChartData('Thurs', showData.temp),
+                        ChartData('Friday', 17)
+                      ],
+                      xValueMapper: (ChartData data, _) => data.x,
+                      yValueMapper: (ChartData data, _) => data.y)
+                ]
+            ),
+
+
+          ],
+        ),
       ),
     );
   }
@@ -86,4 +87,9 @@ String getBackImage( var data){
 
   }
   return backimage;
+}
+class ChartData {
+  ChartData(this.x, this.y);
+  final String x;
+  final double? y;
 }

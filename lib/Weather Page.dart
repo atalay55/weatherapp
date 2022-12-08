@@ -26,11 +26,15 @@ class _WeatherPageState extends State<WeatherPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:AppBar(title: Text("")) ,
+      appBar:AppBar(title: Text("Weather",style: TextStyle(fontSize: 21))
+      ,backgroundColor: Colors.deepPurple) ,
       body:Center(
         child: FutureBuilder(
           future: WeatherDb(city:widget.city).getShowData(),
           builder: (context,snapshot){
+
+
+
             if(snapshot.hasData){
 
               ShowData data = snapshot.data as ShowData;
