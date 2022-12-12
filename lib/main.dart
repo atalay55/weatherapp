@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:weatherapp/DataBaseManager/WeatherDb.dart';
 import 'package:weatherapp/HomePage.dart';
 
 void main() {

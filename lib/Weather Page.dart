@@ -5,35 +5,35 @@ import 'package:weatherapp/Entity/ShowData.dart';
 
 class WeatherPage extends StatefulWidget {
 
-  late String city;
+  late String  city;
+  late String lat;
+  late String lon;
+  late bool withLoc=false;
 
+  WeatherPage.geo({required this.lat,required this.lon,required this.withLoc});
 
   WeatherPage({required this.city});
 
   @override
+
   State<WeatherPage> createState() => _WeatherPageState();
 }
 
 class _WeatherPageState extends State<WeatherPage> {
-  @override
-  void initState() {
-    WeatherDb(city:widget.city );
-  }
 
   late String image;
 
-
   @override
   Widget build(BuildContext context) {
+
+    print(widget.withLoc);
     return Scaffold(
       appBar:AppBar(title: Text("Weather",style: TextStyle(fontSize: 21))
       ,backgroundColor: Colors.deepPurple) ,
       body:Center(
         child: FutureBuilder(
-          future: WeatherDb(city:widget.city).getShowData(),
+          future:  widget.withLoc ?WeatherDb.geo(lat: widget.lat, lon: widget.lon).getShowDataWithLoc():WeatherDb(city: widget.city).getShowData(),
           builder: (context,snapshot){
-
-
 
             if(snapshot.hasData){
 
